@@ -144,7 +144,7 @@ async function runSearch() {
   state.hits = hits;
 
   el.status.textContent = hits.length
-    ? `${hits.reduce((a, h) => a + h.count, 0)} padanan pada ${hits.length} muka surat`
+    ? `${hits.reduce((a, h) => a + h.count, 0)} padanan dalam ${hits.length} muka surat`
     : `Tiada padanan untuk “${q}”.`;
 
   const frag = document.createDocumentFragment();

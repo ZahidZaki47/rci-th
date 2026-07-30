@@ -1,7 +1,7 @@
 const c = window.RCI;
 document.getElementById("dl").href = c.pdfUrl;
-document.getElementById("mirror").href = c.mirrorUrl;
 document.getElementById("src").href = c.sourceUrl;
+document.getElementById("repo").href = c.repoUrl;
 document.getElementById("sha").textContent = c.pdfSha256;
 document.getElementById("dl-size").textContent = `(${c.pdfSize})`;
 

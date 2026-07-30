@@ -1,7 +1,7 @@
-// Edit these two after uploading the PDF. Everything else on the site reads from here.
+// Single place the whole site reads its links and file facts from.
 window.RCI = {
   pdfUrl: "https://github.com/ZahidZaki47/rci-th/releases/download/v1.0/Laporan-RCI-Tabung-Haji-2014-2020.pdf",
-  mirrorUrl: "https://github.com/ZahidZaki47/rci-th/releases/latest",
+  repoUrl: "https://github.com/ZahidZaki47/rci-th",
   pdfSize: "183.6 MB",
   pdfSha256: "52f64116384b915504180bdd3b4554e4f03dd66c86df0476cec08ca80bdb8c61",
   sourceUrl:

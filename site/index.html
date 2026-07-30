@@ -25,8 +25,9 @@
       <p class="hero__eyebrow">Laporan Penuh · 252 Muka Surat</p>
       <h1>Laporan Suruhanjaya Siasatan Diraja Tabung Haji</h1>
       <p class="hero__lede">
-        Siasatan ke atas isu pengurusan dan operasi Lembaga Tabung Haji dari tahun 2014 hingga 2020, dipersembahkan kepada
-        Kebawah Duli Yang Maha Mulia Seri Paduka Baginda Yang di-Pertuan Agong pada 19 Julai 2022.
+        Siasatan terhadap isu pengurusan dan operasi Lembaga Tabung Haji dari tahun 2014 hingga 2020. Laporan bertarikh
+        19 Julai 2022 dan dipersembahkan kepada Kebawah Duli Yang Maha Mulia Seri Paduka Baginda Yang di-Pertuan Agong
+        pada 30 Ogos 2022.
       </p>
       <div class="hero__actions">
         <a class="btn" href="baca.html">
@@ -37,7 +38,6 @@
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" /></svg>
           Muat turun PDF <span class="btn__note" id="dl-size"></span>
         </a>
-        <a class="btn btn--ghost" id="mirror" href="#">Cermin</a>
       </div>
 
       <dl class="facts reveal">
@@ -45,6 +45,7 @@
         <div><dt>Bab</dt><dd>4</dd></div>
         <div><dt>Tempoh disiasat</dt><dd>2014–2020</dd></div>
         <div><dt>Tarikh laporan</dt><dd>19 Julai 2022</dd></div>
+        <div><dt>Pesuruhjaya</dt><dd>6</dd></div>
       </dl>
     </header>
 
@@ -52,9 +53,9 @@
       <section class="band wrap reveal">
         <h2>Carian teks penuh, tanpa muat turun</h2>
         <p>
-          Setiap muka surat telah melalui pengecaman aksara optik (OCR) dalam Bahasa Melayu dan Inggeris. Cari mana-mana
-          perkataan, dan padanan akan diserlahkan tepat di atas muka surat asal. Setiap muka surat ada pautannya sendiri,
-          jadi anda boleh rujuk perenggan tepat kepada orang lain.
+          Setiap muka surat telah melalui pengecaman aksara optik (OCR) dalam bahasa Melayu dan Inggeris. Cari
+          mana-mana perkataan, dan padanan akan diserlahkan tepat pada muka surat asal. Setiap muka surat mempunyai
+          pautannya sendiri, jadi anda boleh merujuk orang lain terus ke perenggan yang dimaksudkan.
         </p>
       </section>
 
@@ -66,8 +67,8 @@
       <section class="band wrap reveal">
         <h2>Sahkan salinan anda</h2>
         <p>
-          Fail PDF di bawah adalah lossless — piksel setiap muka surat sama tepat dengan penerbitan asal, tiada mampatan
-          tambahan. Semak cap jari fail anda supaya pasti ia tidak diusik:
+          Fail PDF ini tidak dimampatkan semula. Piksel setiap muka surat sama tepat dengan penerbitan rasmi. Semak cap
+          jari digital fail anda untuk memastikan ia tidak diubah:
         </p>
         <div class="checksum">
           <dl>
@@ -79,27 +80,30 @@
             <dd><code>252</code></dd>
           </dl>
         </div>
-        <p style="margin-top: 1.5rem">
-          Windows: <code>Get-FileHash fail.pdf -Algorithm SHA256</code> · macOS dan Linux:
-          <code>shasum -a 256 fail.pdf</code>
+        <p class="after-panel">
+          Windows: <code>Get-FileHash fail.pdf -Algorithm SHA256</code><br />
+          macOS dan Linux: <code>shasum -a 256 fail.pdf</code>
         </p>
       </section>
 
       <section class="band wrap reveal">
         <h2>Asal-usul</h2>
         <p>
-          Laporan ini diterbitkan oleh Jabatan Kemajuan Islam Malaysia (JAKIM) dalam bentuk pembaca dalam talian. Salinan
-          PDF di laman ini dijana daripada penerbitan rasmi tersebut supaya boleh dimuat turun dan dicari. Laman ini
-          <strong>bukan</strong> cermin rasmi kerajaan.
+          Laporan ini diterbitkan oleh Jabatan Kemajuan Islam Malaysia (JAKIM) sebagai pembaca dalam talian sahaja.
+          Salinan PDF di laman ini dijana daripada penerbitan rasmi tersebut supaya boleh dimuat turun dan dicari.
+          Laman ini <strong>bukan</strong> cermin rasmi kerajaan.
         </p>
-        <p><a class="link-action" id="src" href="#">Penerbitan rasmi JAKIM</a></p>
+        <p class="links">
+          <a class="link-action" id="src" href="#">Penerbitan rasmi JAKIM</a>
+          <a class="link-action" id="repo" href="#">Kod sumber dan kaedah penjanaan</a>
+        </p>
       </section>
     </main>
 
     <footer class="site wrap">
       <p>
-        Dokumen awam. Diedar semula untuk kemudahan capaian. Jika terdapat percanggahan, penerbitan rasmi JAKIM adalah
-        muktamad.
+        Dokumen awam, diedarkan semula untuk kemudahan capaian. Jika terdapat percanggahan, penerbitan rasmi JAKIM
+        yang muktamad.
       </p>
     </footer>
 

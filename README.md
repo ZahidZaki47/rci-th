@@ -48,8 +48,7 @@ python ocr_layer.py "<fail>.pdf"   # tambah lapisan teks halimunan
 python build_site.py   # imej muka surat + indeks carian untuk laman
 ```
 
-Setiap skrip ada `--selftest`. Lihat [DEPLOY.md](DEPLOY.md) untuk menerbitkan laman, dan
-[PUBLISH.md](PUBLISH.md) untuk metadata Zenodo.
+Setiap skrip mempunyai `--selftest`. Lihat [DEPLOY.md](DEPLOY.md) untuk menerbitkan laman.
 
 ## Sumber dan hak cipta
 

@@ -12,6 +12,3 @@ skills.txt
 # Credentials. Never commit.
 token-*.txt
 *.token
-
-# Transient deposit state.
-.zenodo-draft.json

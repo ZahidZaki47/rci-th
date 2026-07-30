@@ -3,7 +3,6 @@
 :root {
   --primary: #0f172a;
   --on-primary: #ffffff;
-  --secondary: #334155;
   --accent: #0369a1;
   --bg: #f8fafc;
   --fg: #020617;
@@ -22,6 +21,12 @@
   --space-6: 3rem;
   --space-8: 4rem;
 
+  /* Four sizes, far enough apart to read as deliberate steps. */
+  --text-xs: 0.75rem; /* 12px — eyebrows, labels */
+  --text-sm: 0.8125rem; /* 13px — captions, code */
+  --text-md: 0.875rem; /* 14px — controls, secondary prose */
+  --text-lg: 1.25rem; /* 20px — lede */
+
   --display: "Libre Bodoni", Georgia, "Times New Roman", serif;
   --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --radius: 6px;
@@ -33,7 +38,6 @@
   :root {
     --primary: #e2e8f0;
     --on-primary: #0f172a;
-    --secondary: #cbd5e1;
     --accent: #7dd3fc;
     --bg: #0b1120;
     --fg: #e8eef7;
@@ -77,6 +81,15 @@ h3 {
   text-wrap: balance;
 }
 
+/* Paragraph margins come off the spacing scale rather than the browser's 1em,
+   which drifts with whatever font-size the block happens to have. */
+p {
+  margin: 0 0 var(--space-2);
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
 a {
   color: var(--accent);
   text-underline-offset: 3px;
@@ -113,12 +126,12 @@ a {
   justify-content: center;
   gap: 0.5rem;
   min-height: var(--tap);
-  padding: 0.7rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   border: 1px solid transparent;
   border-radius: var(--radius);
   background: var(--primary);
   color: var(--on-primary);
-  font: 600 0.95rem/1 var(--sans);
+  font: 600 var(--text-md)/1 var(--sans);
   text-decoration: none;
   cursor: pointer;
   transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
@@ -143,7 +156,7 @@ a {
 .btn__note {
   font-weight: 400;
   opacity: 0.75;
-  font-size: 0.85em;
+  font-size: var(--text-xs);
 }
 
 .icon {
@@ -162,7 +175,7 @@ a {
 .masthead {
   border-bottom: 1px solid var(--border);
   padding: var(--space-2) 0;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted-fg);
@@ -172,19 +185,19 @@ a {
   padding: var(--space-8) 0 var(--space-6);
 }
 .hero__eyebrow {
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted-fg);
   margin: 0 0 var(--space-2);
 }
 .hero h1 {
-  font-size: clamp(2.1rem, 6vw, 4rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   max-width: 20ch;
 }
 .hero__lede {
   margin: var(--space-3) 0 var(--space-4);
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-size: clamp(1.0625rem, 1.6vw, var(--text-lg));
   color: var(--muted-fg);
   max-width: 58ch;
 }
@@ -207,15 +220,15 @@ a {
   padding: var(--space-3) var(--space-2);
 }
 .facts dt {
-  font-size: 0.78rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted-fg);
 }
 .facts dd {
-  margin: 0.35rem 0 0;
+  margin: 0.5rem 0 0;
   font-family: var(--display);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -224,7 +237,7 @@ section.band {
   border-bottom: 1px solid var(--border);
 }
 section.band h2 {
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   margin-bottom: var(--space-3);
 }
 section.band p {
@@ -248,7 +261,7 @@ section.band p {
   justify-content: space-between;
   gap: var(--space-2);
   min-height: var(--tap);
-  padding: 0.85rem 0.25rem;
+  padding: 0.75rem 0.25rem;
   color: var(--fg);
   text-decoration: none;
   transition: background 160ms ease, padding-left 160ms ease;
@@ -260,7 +273,7 @@ section.band p {
 .toc span:last-child {
   color: var(--muted-fg);
   font-variant-numeric: tabular-nums;
-  font-size: 0.9rem;
+  font-size: var(--text-md);
   white-space: nowrap;
 }
 
@@ -274,6 +287,17 @@ section.band p {
   font-weight: 500;
 }
 
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-4);
+}
+
+.after-panel {
+  margin-top: var(--space-3);
+  line-height: 2;
+}
+
 .checksum {
   margin-top: var(--space-3);
   background: var(--surface);
@@ -284,7 +308,7 @@ section.band p {
 }
 .checksum code {
   font-family: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   word-break: break-all;
 }
 .checksum dl {
@@ -292,10 +316,12 @@ section.band p {
   grid-template-columns: max-content 1fr;
   gap: 0.5rem var(--space-2);
   margin: 0;
+  /* monospace values sit on a different line box than the sans labels */
+  align-items: baseline;
 }
 .checksum dt {
   color: var(--muted-fg);
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
 }
 .checksum dd {
   margin: 0;
@@ -304,7 +330,7 @@ section.band p {
 footer.site {
   padding: var(--space-6) 0;
   color: var(--muted-fg);
-  font-size: 0.9rem;
+  font-size: var(--text-md);
 }
 footer.site p {
   max-width: 68ch;
@@ -343,7 +369,7 @@ body.reader {
 }
 .bar__title {
   font-family: var(--display);
-  font-size: 0.95rem;
+  font-size: var(--text-md);
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -355,13 +381,13 @@ body.reader {
 @media (max-width: 30rem) {
   .bar {
     gap: 0.25rem;
-    padding-inline: 0.35rem;
+    padding-inline: 0.5rem;
   }
   .bar__title {
     display: none;
   }
   .iconbtn {
-    padding: 0 0.35rem;
+    padding: 0 0.5rem;
   }
   .pager {
     flex: 1;
@@ -384,31 +410,28 @@ body.reader {
 @media (max-width: 20rem) {
   .bar {
     gap: 0;
-    padding-inline: 0.2rem;
+    padding-inline: 0.25rem;
   }
   .pager .total {
     display: none;
   }
   .pager input {
-    width: 2.9rem;
+    width: 3rem;
   }
-}
-.bar__spacer {
-  flex: 1;
 }
 .iconbtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   min-width: var(--tap);
   min-height: var(--tap);
-  padding: 0 0.6rem;
+  padding: 0 0.75rem;
   border: 1px solid transparent;
   border-radius: var(--radius);
   background: transparent;
   color: var(--fg);
-  font: 500 0.9rem/1 var(--sans);
+  font: 500 var(--text-md)/1 var(--sans);
   cursor: pointer;
   text-decoration: none;
   transition: background 160ms ease, border-color 160ms ease;
@@ -433,17 +456,17 @@ body.reader {
 .pager {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.5rem;
   font-variant-numeric: tabular-nums;
-  font-size: 0.9rem;
+  font-size: var(--text-md);
   color: var(--muted-fg);
 }
 .pager input {
   width: 3.75rem;
   min-height: var(--tap);
-  padding: 0.35rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   text-align: center;
-  font: 600 0.95rem/1 var(--sans);
+  font: 600 var(--text-md)/1 var(--sans);
   font-variant-numeric: tabular-nums;
   color: var(--fg);
   background: var(--surface);
@@ -460,6 +483,7 @@ main.stage {
 
 .page {
   position: relative;
+  margin: 0;
   width: min(100%, 52rem);
   aspect-ratio: var(--page-aspect, 0.707);
   background: var(--surface);
@@ -495,6 +519,7 @@ main.stage {
 
 .nav-edge {
   position: fixed;
+  padding: 0;
   top: 50%;
   translate: 0 -50%;
   z-index: 15;
@@ -563,8 +588,9 @@ main.stage {
   border-radius: var(--radius);
 }
 .searchpanel__status {
-  padding: 0.6rem 0.9rem;
-  font-size: 0.85rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: var(--text-sm);
   color: var(--muted-fg);
   border-bottom: 1px solid var(--border);
 }
@@ -583,7 +609,7 @@ main.stage {
   display: block;
   width: 100%;
   text-align: left;
-  padding: 0.8rem 0.9rem;
+  padding: 0.75rem 1rem;
   background: transparent;
   border: 0;
   color: inherit;
@@ -600,14 +626,14 @@ main.stage {
 }
 .results .p {
   display: block;
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--muted-fg);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 .results .s {
-  font-size: 0.9rem;
+  font-size: var(--text-md);
   line-height: 1.5;
   color: var(--fg);
 }
@@ -615,7 +641,7 @@ main.stage {
   background: var(--mark);
   color: var(--mark-fg);
   border-radius: 2px;
-  padding: 0 0.1em;
+  padding: 0 0.125em;
 }
 
 .scrim {
