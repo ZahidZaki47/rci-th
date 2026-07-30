@@ -264,6 +264,16 @@ section.band p {
   white-space: nowrap;
 }
 
+/* Standalone links act as buttons, so they need a real touch target rather than
+   the line-height of the text inside them. */
+.link-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0.5rem 0;
+  font-weight: 500;
+}
+
 .checksum {
   margin-top: var(--space-3);
   background: var(--surface);
@@ -366,6 +376,21 @@ body.reader {
 @media (max-width: 22.5rem) {
   #download {
     display: none;
+  }
+}
+
+/* Folded/ultra-narrow screens: shed the page total rather than shrink any
+   control below the 44px touch target. The current page stays visible. */
+@media (max-width: 20rem) {
+  .bar {
+    gap: 0;
+    padding-inline: 0.2rem;
+  }
+  .pager .total {
+    display: none;
+  }
+  .pager input {
+    width: 2.9rem;
   }
 }
 .bar__spacer {
@@ -528,6 +553,7 @@ main.stage {
 }
 .searchpanel input[type="search"] {
   flex: 1;
+  min-width: 0; /* an input's intrinsic size otherwise pushes the close button off-screen */
   min-height: var(--tap);
   padding: 0.5rem 0.75rem;
   font: 400 1rem/1.2 var(--sans);
