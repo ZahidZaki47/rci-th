@@ -1,52 +1,78 @@
-# Menerbitkan laman
+# Keadaan penerbitan
 
-## 1. Muat naik PDF dahulu
+## Sudah siap
 
-PDF 183.6 MB tidak disimpan dalam laman ini — ia terlalu besar dan Cloudflare Pages hadkan 25 MB sefail.
-Muat naik `WJD22-0447 Laporan Suruhanjaya RCI (searchable).pdf` ke:
+| Perkara | Status |
+|---|---|
+| Repositori | https://github.com/ZahidZaki47/rci-th (awam) |
+| Pembaca web | https://zahidzaki47.github.io/rci-th/ — auto-deploy setiap kali `site/` ditolak |
+| PDF | Release [`v1.0`](https://github.com/ZahidZaki47/rci-th/releases/tag/v1.0), 183.6 MB |
+| Pautan muat turun dalam laman | Sudah diisi ke Release GitHub |
 
-- **Zenodo** (utama) — dapat DOI kekal
-- **GitHub Releases** (cermin)
+Tiada langkah bina. Tolak ke `main`, workflow `.github/workflows/pages.yml` terbitkan `site/`.
 
-## 2. Isi dua pautan
+## Belum siap — perlukan tindakan anda
 
-Edit `site/assets/config.js`, ganti dua baris ini:
+### 1. Zenodo (cermin kekal + DOI)
 
-```js
-pdfUrl: "#GANTI-PAUTAN-ZENODO",
-mirrorUrl: "#GANTI-PAUTAN-GITHUB",
+Perlukan token; sesi pelayar tidak mencukupi untuk API.
+
+zenodo.org → nama anda → **Applications** → **Personal access tokens** → **New token** →
+tanda `deposit:write` dan `deposit:actions` → **Create** → salin.
+
+Metadata siap salin ada dalam [PUBLISH.md](PUBLISH.md).
+
+Selepas terbit, tukar `pdfUrl` dalam `site/assets/config.js` kepada pautan Zenodo dan biarkan
+GitHub Release sebagai `mirrorUrl` — Zenodo lebih sesuai jadi pautan utama kerana DOI-nya kekal.
+
+### 2. Cloudflare Pages (pilihan — bandwidth tanpa had)
+
+GitHub Pages ada had bandwidth lembut 100 GB sebulan. Satu sesi pembaca lebih kurang 2–5 MB,
+jadi anggaran 20,000–30,000 sesi sebulan. Muat turun PDF dari Releases **tidak** dikira.
+
+Jika trafik melebihi itu, pindah laman ke Cloudflare Pages — bandwidth tanpa had, percuma:
+
 ```
-
-Tiada tempat lain perlu disunting — kedua-dua halaman baca daripada fail ini.
-
-## 3. Terbitkan ke Cloudflare Pages
-
-Tiada langkah bina. Seret folder `site/` ke Cloudflare Pages, atau:
-
-```
+npx wrangler login          # buka pelayar, anda klik benarkan
 npx wrangler pages deploy site --project-name rci-th
 ```
 
-Dapat `rci-th.pages.dev` percuma. Bandwidth tanpa had, tiada kad kredit.
+`site/_headers` sudah menetapkan CSP, `nosniff` dan cache setahun — Cloudflare Pages membacanya
+terus. GitHub Pages mengabaikan fail itu.
 
-`site/_headers` sudah menetapkan CSP, `nosniff`, dan cache setahun untuk imej dan data.
+### 3. Sejarah git masih mengandungi nota tempatan
 
-## Kandungan folder
+`skills.txt` dan `link-rci.txt` sudah dipadam daripada repositori, tetapi masih boleh dicapai
+melalui commit pertama `3737463`. Untuk membuangnya betul-betul perlukan penulisan semula
+sejarah dan force-push:
+
+```
+git checkout --orphan bersih
+git add -A
+git commit -F <mesej>
+git branch -D main
+git branch -m main
+git push --force
+```
+
+Release `v1.0` tidak terjejas oleh operasi ini.
+
+## Kandungan folder site/
 
 | Laluan | Saiz | Nota |
 |---|---|---|
 | `index.html`, `baca.html` | 12 KB | Halaman utama dan pembaca |
-| `assets/` | 24 KB | CSS, JS, konfigurasi |
+| `assets/` | 28 KB | CSS, JS, konfigurasi |
 | `pages/001–252.webp` | 59 MB | Imej muka surat asal, bait demi bait seperti dihidangkan |
 | `data/pages.json` | 0.34 MB | Indeks carian teks penuh |
 | `data/words/*.json` | 1.8 MB | Kotak perkataan untuk serlahan, dimuat bila perlu |
 
-Jumlah 61 MB, 510 fail. Had Cloudflare Pages ialah 25 MB sefail dan 20,000 fail.
+61 MB, 510 fail. Had GitHub Pages 1 GB; had Cloudflare Pages 25 MB sefail dan 20,000 fail.
 
 ## Menjana semula aset
 
 ```
-python build_site.py
+python build_site.py <url-penerbitan>
 ```
 
-Langkau muat turun jika 252 imej sudah ada dalam `site/pages/`.
+Melangkau muat turun jika `site/pages/` sudah berisi.
