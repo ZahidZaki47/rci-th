@@ -33,11 +33,11 @@ Saiz     183,607,203 bait
 ```
 
 ```powershell
-Get-FileHash "WJD22-0447 Laporan Suruhanjaya RCI (searchable).pdf" -Algorithm SHA256
+Get-FileHash Laporan-RCI-Tabung-Haji-2014-2020.pdf -Algorithm SHA256
 ```
 
 ```bash
-shasum -a 256 "WJD22-0447 Laporan Suruhanjaya RCI (searchable).pdf"
+shasum -a 256 Laporan-RCI-Tabung-Haji-2014-2020.pdf
 ```
 
 ## Menjana semula

@@ -4,3 +4,7 @@
 
 __pycache__/
 *.pyc
+
+# Local working notes — not for publication.
+link-rci.txt
+skills.txt

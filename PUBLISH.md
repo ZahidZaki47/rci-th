@@ -91,8 +91,8 @@ Inquiry, Malaysia, tadbir urus, pelaburan, kewangan Islam, haji, laporan kerajaa
 
 | Relation | Identifier |
 |---|---|
-| `is derived from` | `https://online.fliphtml5.com/kaxni/WJD22-0447-Laporan-Suruhanjaya-RCI-1f93/` |
-| `is supplemented by` | URL laman pembaca anda (`https://…pages.dev`) — tambah selepas terbit |
+| `is derived from` | URL pengumuman rasmi JAKIM (lihat pautan dalam README) |
+| `is supplemented by` | `https://zahidzaki47.github.io/rci-th/` |
 
 ---
 
@@ -129,11 +129,11 @@ Saiz     183,607,203 bait
 ```
 
 ```powershell
-Get-FileHash "WJD22-0447 Laporan Suruhanjaya RCI (searchable).pdf" -Algorithm SHA256
+Get-FileHash Laporan-RCI-Tabung-Haji-2014-2020.pdf -Algorithm SHA256
 ```
 
 ```bash
-shasum -a 256 "WJD22-0447 Laporan Suruhanjaya RCI (searchable).pdf"
+shasum -a 256 Laporan-RCI-Tabung-Haji-2014-2020.pdf
 ```
 
 ## Baca tanpa muat turun

@@ -1,7 +1,10 @@
 """Build the static reader assets from the flipbook source and the searchable PDF.
 
 Usage:
-    python build_site.py
+    python build_site.py [publication-url]
+
+The URL is only needed when site/pages/ is empty; otherwise the existing images
+are reused.
 
 Writes into site/:
     pages/NNN.webp     the original page images, byte-for-byte as served
@@ -11,27 +14,30 @@ Writes into site/:
 """
 
 import json
-from concurrent.futures import ThreadPoolExecutor
+import sys
 from pathlib import Path
 
 import fitz  # pymupdf
 
-from flip2pdf import LINKS, UA, book_base, download, read_pages
+from flip2pdf import book_base, download, read_links, read_pages
 
 ROOT = Path(__file__).parent
 SITE = ROOT / "site"
 PDF = ROOT / "WJD22-0447 Laporan Suruhanjaya RCI (searchable).pdf"
 
 
-def fetch_pages():
+def fetch_pages(url=None):
     """Original webp files, untouched — smaller than the PDF's lossless PNG and identical pixels."""
     out = SITE / "pages"
     out.mkdir(parents=True, exist_ok=True)
     existing = sorted(out.glob("*.webp"))
-    if len(existing) == 252:
+    if existing:
         print(f"  pages: {len(existing)} already present, skipping download")
         return len(existing)
-    base = book_base(LINKS.read_text(encoding="utf-8").strip().splitlines()[0])
+    url = url or next(iter(read_links()), None)
+    if not url:
+        sys.exit("site/pages/ is empty — pass the publication URL as an argument")
+    base = book_base(url)
     _, urls = read_pages(base)
     blobs = download(urls, base)
     for i, blob in enumerate(blobs, 1):
@@ -56,10 +62,10 @@ def extract_text():
     return doc, pages
 
 
-def main():
+def main(url=None):
     SITE.mkdir(exist_ok=True)
     print("* page images")
-    count = fetch_pages()
+    count = fetch_pages(url)
     print(f"  {count} images")
 
     print("* text + word boxes")
@@ -88,4 +94,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1] if len(sys.argv) > 1 else None)

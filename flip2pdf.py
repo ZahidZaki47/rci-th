@@ -1,8 +1,8 @@
 """FlipHTML5 flipbook -> PDF.
 
 Usage:
-    python flip2pdf.py                 # convert every URL in link-rci.txt
-    python flip2pdf.py <url> [...]     # convert specific URLs
+    python flip2pdf.py <url> [...]     # convert the given publications
+    python flip2pdf.py                 # or read URLs from link-rci.txt, one per line
     python flip2pdf.py --selftest      # run built-in checks
 
 Page image names live in the book's encrypted config (WASM-decoded), so the
@@ -30,6 +30,13 @@ ROOT = Path(__file__).parent
 LINKS = ROOT / "link-rci.txt"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36"
 WORKERS = 8
+
+
+def read_links():
+    """Optional local file of publication URLs; absent by default."""
+    if not LINKS.exists():
+        return []
+    return [l.strip() for l in LINKS.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
 def book_base(url):
@@ -154,9 +161,9 @@ def selftest():
 def main(argv):
     if argv and argv[0] == "--selftest":
         return selftest()
-    urls = argv or [l.strip() for l in LINKS.read_text(encoding="utf-8").splitlines() if l.strip()]
+    urls = argv or read_links()
     if not urls:
-        sys.exit(f"no links in {LINKS}")
+        sys.exit(f"pass a publication URL, or list one per line in {LINKS.name}")
     for u in urls:
         convert(u)
 
