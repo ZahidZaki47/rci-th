@@ -1,0 +1,6 @@
+# The PDFs ship as Release assets, not in git history — 183 MB per copy would
+# make every clone painful and blow past GitHub's file size warnings.
+*.pdf
+
+__pycache__/
+*.pyc

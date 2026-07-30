@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Baca — Laporan RCI Tabung Haji</title>
+    <meta name="description" content="Baca 252 muka surat Laporan Suruhanjaya Siasatan Diraja Tabung Haji dalam pelayar, dengan carian teks penuh." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Cpath d='M9 8h11l4 4v12H9z' fill='none' stroke='%23f8fafc' stroke-width='2'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="assets/app.css" />
+    <script src="assets/config.js"></script>
+  </head>
+  <body class="reader">
+    <a class="skip" href="#page">Terus ke muka surat</a>
+
+    <header class="bar">
+      <a class="iconbtn" href="./" aria-label="Kembali ke halaman utama">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m0 0 6-6m-6 6 6 6" /></svg>
+        <span class="iconbtn__label">Utama</span>
+      </a>
+      <span class="bar__title">Laporan RCI Tabung Haji</span>
+
+      <div class="pager">
+        <label class="skip" for="page-input">Nombor muka surat</label>
+        <input id="page-input" type="number" min="1" value="1" inputmode="numeric" />
+        <span>/ <span id="page-total">252</span></span>
+      </div>
+
+      <button class="iconbtn" id="prev" aria-label="Muka surat sebelum">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+      </button>
+      <button class="iconbtn" id="next" aria-label="Muka surat seterusnya">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+      </button>
+
+      <button class="iconbtn" id="search-toggle" aria-expanded="false" aria-controls="searchpanel">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+        <span class="iconbtn__label">Cari</span>
+      </button>
+
+      <a class="iconbtn" id="download" href="#" aria-label="Muat turun PDF penuh">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" /></svg>
+        <span class="iconbtn__label">PDF</span>
+      </a>
+    </header>
+
+    <button class="nav-edge nav-edge--prev" id="edge-prev" aria-label="Muka surat sebelum">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+    </button>
+    <button class="nav-edge nav-edge--next" id="edge-next" aria-label="Muka surat seterusnya">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    </button>
+
+    <main class="stage">
+      <figure class="page" id="page" style="margin: 0">
+        <img id="page-img" src="pages/001.webp" alt="Muka surat 1" decoding="async" />
+      </figure>
+    </main>
+
+    <div class="scrim" id="scrim" data-open="false"></div>
+
+    <aside class="searchpanel" id="searchpanel" data-open="false" aria-hidden="true" aria-label="Carian teks penuh">
+      <div class="searchpanel__head">
+        <label class="skip" for="q">Cari dalam laporan</label>
+        <input id="q" type="search" placeholder="Cari dalam 252 muka surat…" autocomplete="off" />
+        <button class="iconbtn" id="search-close" aria-label="Tutup carian">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+        </button>
+      </div>
+      <p class="searchpanel__status" id="search-status" role="status">Tekan <kbd>/</kbd> bila-bila masa untuk cari.</p>
+      <ul class="results" id="results"></ul>
+    </aside>
+
+    <script src="assets/reader.js"></script>
+  </body>
+</html>
