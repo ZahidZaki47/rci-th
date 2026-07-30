@@ -8,3 +8,10 @@ __pycache__/
 # Local working notes — not for publication.
 link-rci.txt
 skills.txt
+
+# Credentials. Never commit.
+token-*.txt
+*.token
+
+# Transient deposit state.
+.zenodo-draft.json

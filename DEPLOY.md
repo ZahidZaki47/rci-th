@@ -13,17 +13,33 @@ Tiada langkah bina. Tolak ke `main`, workflow `.github/workflows/pages.yml` terb
 
 ## Belum siap — perlukan tindakan anda
 
-### 1. Zenodo (cermin kekal + DOI)
+### 1. Zenodo — draf siap, tinggal tekan terbit
 
-Perlukan token; sesi pelayar tidak mencukupi untuk API.
+Draf **21708917** sudah dicipta, metadata penuh sudah dimasukkan, dan PDF 183.6 MB sudah dimuat
+naik. Checksum MD5 yang Zenodo laporkan sepadan dengan fail tempatan, jadi fail sampai utuh.
 
-zenodo.org → nama anda → **Applications** → **Personal access tokens** → **New token** →
-tanda `deposit:write` dan `deposit:actions` → **Create** → salin.
+DOI yang ditempah: **10.5281/zenodo.21708917**
 
-Metadata siap salin ada dalam [PUBLISH.md](PUBLISH.md).
+Semak draf: https://zenodo.org/uploads/21708917
 
-Selepas terbit, tukar `pdfUrl` dalam `site/assets/config.js` kepada pautan Zenodo dan biarkan
-GitHub Release sebagai `mirrorUrl` — Zenodo lebih sesuai jadi pautan utama kerana DOI-nya kekal.
+Terbit dengan:
+
+```
+python zenodo_publish.py --publish
+```
+
+Penerbitan **kekal** — DOI tidak boleh dibatalkan dan fail tidak boleh ditukar selepas itu
+(metadata masih boleh disunting). Sebab itu langkah ini sengaja diasingkan.
+
+Selepas terbit, tukar `pdfUrl` dalam `site/assets/config.js` kepada pautan Zenodo dan pindahkan
+GitHub Release menjadi `mirrorUrl` — DOI Zenodo lebih sesuai jadi pautan utama kerana ia kekal:
+
+```js
+pdfUrl: "https://zenodo.org/records/21708917/files/Laporan-RCI-Tabung-Haji-2014-2020.pdf",
+mirrorUrl: "https://github.com/ZahidZaki47/rci-th/releases/latest",
+```
+
+Kemudian `git push` — laman akan terbit semula sendiri.
 
 ### 2. Cloudflare Pages (pilihan — bandwidth tanpa had)
 
